@@ -4,7 +4,7 @@ export default function FormHeader({
   setFormSection,
 }) {
   return (
-    <div>
+    <div className="flex divide-x divide-white">
       {formDetails.map((detail) => {
         return (
           <HeaderList
@@ -23,9 +23,19 @@ export default function FormHeader({
 
 function HeaderList({ id, icon, header, formSection, setFormSection }) {
   return (
-    <button onClick={() => setFormSection(id)}>
-      <img src={icon} alt="Icon" />
-      <h2>{header}</h2>
+    <button
+      onClick={() => setFormSection(id)}
+      className={
+        "flex justify-center items-center px-2" +
+        (id === formSection
+          ? " flex-1 bg-[var(--theme-color)]"
+          : " bg-gray-300")
+      }
+    >
+      <img src={icon} alt="Icon" className="object-center w-6 brightness-0 invert" />
+      <h2 className="ml-2 text-xl font-semibold text-white">
+        {id === formSection && header}
+      </h2>
     </button>
   );
 }

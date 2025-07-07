@@ -6,7 +6,7 @@ export default function Header(props) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className="mr-2 size-8 fill-[var(--theme-color)]"
+        className="mr-2 w-8 fill-[var(--theme-color)]"
       >
         <path
           d={
