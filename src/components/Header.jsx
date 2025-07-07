@@ -1,18 +1,12 @@
 import ThemeColors from "./ThemeColors";
 
 export default function Header(props) {
-  const matchedColor = props.colors.find(
-    (color) => color.id === props.colorState,
-  ).oklch;
   return (
     <header className="flex items-center py-3">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className="mr-2 size-8"
-        style={{
-          fill: matchedColor,
-        }}
+        className="mr-2 size-8 fill-[var(--theme-color)]"
       >
         <path
           d={
@@ -25,10 +19,7 @@ export default function Header(props) {
         />
       </svg>
       <h1
-        className="text-2xl font-bold"
-        style={{
-          color: matchedColor,
-        }}
+        className="text-2xl font-bold text-[var(--theme-color)]"
       >
         CVGen
       </h1>

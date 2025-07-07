@@ -1,14 +1,15 @@
 import mark from "../assets/radiobox-marked.svg";
+import "../styles/ThemeColors.css";
 
-export default function ThemeColors({ colors, colorState, setColorState }) {
+export default function ThemeColors({ themes, colorState, setColorState }) {
   return (
     <div className="ml-8 flex">
-      {colors.map((color) => {
+      {themes.map((theme) => {
         return (
           <ColorButton
-            key={color.id}
-            id={color.id}
-            oklch={color.oklch}
+            key={theme.id}
+            id={theme.id}
+            color={theme.color}
             colorState={colorState}
             setColorState={setColorState}
           />
@@ -18,11 +19,10 @@ export default function ThemeColors({ colors, colorState, setColorState }) {
   );
 }
 
-function ColorButton({ id, oklch, colorState, setColorState }) {
+function ColorButton({ id, color, colorState, setColorState }) {
   return (
     <button
-      className="flex size-8 items-center justify-center"
-      style={{ backgroundColor: oklch }}
+      className={"flex size-8 items-center justify-center " + color}
       onClick={() => setColorState(id)}
     >
       {id === colorState && <img src={mark} alt="Mark" className="size-4" />}
