@@ -26,7 +26,7 @@ function HeaderList({ id, icon, header, formSection, setFormSection }) {
     <button
       onClick={() => setFormSection(id)}
       className={
-        "flex justify-center items-center px-2" +
+        "flex items-center px-2" +
         (id === formSection
           ? " flex-1 bg-[var(--theme-color)]"
           : " bg-gray-300")
