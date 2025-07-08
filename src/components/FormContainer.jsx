@@ -3,7 +3,7 @@ import FormBody from "./FormBody";
 import formDetails from "../data/form-details";
 import { useState } from "react";
 
-export default function FormContainer() {
+export default function FormContainer({ formResult, setFormResult }) {
   const [formSection, setFormSection] = useState(0);
 
   return (
@@ -13,7 +13,12 @@ export default function FormContainer() {
         formSection={formSection}
         setFormSection={setFormSection}
       />
-      <FormBody formDetails={formDetails} formSection={formSection} />
+      <FormBody
+        formDetails={formDetails}
+        formSection={formSection}
+        formResult={formResult}
+        setFormResult={setFormResult}
+      />
     </div>
   );
 }

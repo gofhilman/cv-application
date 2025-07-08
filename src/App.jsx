@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import FormContainer from "./components/FormContainer";
+import Preview from "./components/Preview";
 import "./styles/App.css";
 
 const themes = [
@@ -11,6 +12,7 @@ const themes = [
 
 export default function App() {
   const [colorState, setColorState] = useState(0);
+  const [formResult, setFormResult] = useState({});
 
   return (
     <div
@@ -24,7 +26,8 @@ export default function App() {
         colorState={colorState}
         setColorState={setColorState}
       />
-      <FormContainer />
+      <FormContainer formResult={formResult} setFormResult={setFormResult} />
+      <Preview formResult={formResult} />
     </div>
   );
 }
