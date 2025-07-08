@@ -32,7 +32,7 @@ function HeaderList({ id, icon, header, formSection, setFormSection }) {
           : " bg-gray-300")
       }
     >
-      <img src={icon} alt="Icon" className="object-center w-6 brightness-0 invert" />
+      <img src={icon} alt="Icon" className="w-6 brightness-0 invert" />
       <h2 className="ml-2 text-xl font-semibold text-white">
         {id === formSection && header}
       </h2>

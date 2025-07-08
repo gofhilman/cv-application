@@ -13,7 +13,7 @@ export default function FormContainer() {
         formSection={formSection}
         setFormSection={setFormSection}
       />
-      <FormBody />
+      <FormBody formDetails={formDetails} formSection={formSection} />
     </div>
   );
 }
