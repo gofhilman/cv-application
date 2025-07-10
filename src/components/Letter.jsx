@@ -34,9 +34,40 @@ export default function Letter({ formResult }) {
         </div>
       </header>
       <section>
-        <h3>Education</h3>       
+        {formResult["Education"].length > 0 && <h3>Education</h3>}
+        {formResult["Education"].map((list) => (
+          <article key={list.id}>
+            <h4>{list["School"]}</h4>
+            <h5>{list["Course"]}</h5>
+            <p>
+              {list["Starting year"]}-{list["Graduating year"]}
+            </p>
+            {list["GPA"] && <p>GPA: {list["GPA"]}</p>}
+            <ul>
+              {list["Additional details"].map((detail) => (
+                <li key={detail.id}>{detail.description}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </section>
-      <section></section>
+      <section>
+        {formResult["Experience"].length > 0 && <h3>Experience</h3>}
+        {formResult["Experience"].map((list) => (
+          <article key={list.id}>
+            <h4>{list["Position"]}</h4>
+            <h5>{list["Workplace"]}</h5>
+            <p>
+              {list["Starting year"]}-{list["End year"]}
+            </p>
+            <ul>
+              {list["Job responsibilities"].map((detail) => (
+                <li key={detail.id}>{detail.description}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
     </article>
   );
 }

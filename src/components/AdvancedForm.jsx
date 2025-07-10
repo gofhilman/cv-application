@@ -83,7 +83,7 @@ export default function AdvancedForm({
                     type={element.type}
                     value={
                       JSON.stringify(formAddContent) ===
-                      "{\"Additional details\":[],\"Job responsibilities\":[]}"
+                      '{"Additional details":[],"Job responsibilities":[]}'
                         ? ""
                         : formAddContent[element.text]
                     }
@@ -136,7 +136,8 @@ function FormList({ formSection, formResult, setFormResult }) {
 function List({ formSection, formResult, setFormResult, first, second }) {
   return (
     <li>
-      {first} | {second}
+      {first}
+      {second && " | " + second}
     </li>
   );
 }
