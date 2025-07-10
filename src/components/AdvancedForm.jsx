@@ -1,4 +1,5 @@
 import { useState } from "react";
+import plusCircle from "../assets/plus-circle.svg";
 
 export default function AdvancedForm({
   formDetails,
@@ -6,9 +7,23 @@ export default function AdvancedForm({
   formResult,
   setFormResult,
 }) {
-  const [formAddContent, setFormAddContent] = useState({});
+  const [formAddContent, setFormAddContent] = useState({
+    "Additional details": [],
+    "Job responsibilities": [],
+  });
+  const [descList, setDescList] = useState("");
   const section = formDetails.find((detail) => detail.id === formSection);
 
+  const handleDescAdd = (description, elementText) => {
+    setFormAddContent({
+      ...formAddContent,
+      [elementText]: formAddContent[elementText].concat({
+        description: description,
+        id: crypto.randomUUID(),
+      }),
+    });
+    setDescList("");
+  };
   const handleForm = (event, elementText) => {
     setFormAddContent({
       ...formAddContent,
@@ -23,7 +38,10 @@ export default function AdvancedForm({
         id: crypto.randomUUID(),
       }),
     });
-    setFormAddContent({});
+    setFormAddContent({
+      "Additional details": [],
+      "Job responsibilities": [],
+    });
   };
 
   return (
@@ -46,21 +64,26 @@ export default function AdvancedForm({
               <div key={element.id}>
                 <label htmlFor={element.id}>{element.text}</label>
                 {element.type === "textarea" ? (
-                  <textarea
-                    id={element.id}
-                    value={
-                      Object.keys(formAddContent).length === 0
-                        ? ""
-                        : formAddContent[element.text]
-                    }
-                    onChange={(event) => handleForm(event, element.text)}
-                  />
+                  <div>
+                    <textarea
+                      id={element.id}
+                      value={descList}
+                      onChange={(event) => setDescList(event.target.value)}
+                    />
+                    <img
+                      src={plusCircle}
+                      alt="Add button"
+                      onClick={() => handleDescAdd(descList, element.text)}
+                      className="w-8"
+                    />
+                  </div>
                 ) : (
                   <input
                     id={element.id}
                     type={element.type}
                     value={
-                      Object.keys(formAddContent).length === 0
+                      JSON.stringify(formAddContent) ===
+                      "{\"Additional details\":[],\"Job responsibilities\":[]}"
                         ? ""
                         : formAddContent[element.text]
                     }
