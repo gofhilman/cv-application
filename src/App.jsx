@@ -12,7 +12,7 @@ const themes = [
 
 export default function App() {
   const [colorState, setColorState] = useState(0);
-  const [formResult, setFormResult] = useState({});
+  const [formResult, setFormResult] = useState({Education: [], Experience: []});
 
   return (
     <div

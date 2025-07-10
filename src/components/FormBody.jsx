@@ -1,42 +1,10 @@
-export default function FormBody({
-  formDetails,
-  formSection,
-  formResult,
-  setFormResult,
-}) {
-  const formBody = formDetails.find((detail) => detail.id === formSection).body;
-  const handleForm = (event, elementText) => {
-    setFormResult({ ...formResult, [elementText]: event.target.value });
-  };
-  console.log(formResult);
+import SimpleForm from "./SimpleForm";
+import AdvancedForm from "./AdvancedForm";
 
-  return (
-    <div>
-      {formBody.map((element) => {
-        if (element.type === "button") {
-          return <button key={element.id}>{element.text}</button>;
-        } else {
-          return (
-            <div key={element.id}>
-              <label htmlFor={element.id}>{element.text}</label>
-              {element.type === "textarea" ? (
-                <textarea
-                  id={element.id}
-                  value={formResult[element.text]}
-                  onChange={(event) => handleForm(event, element.text)}
-                />
-              ) : (
-                <input
-                  id={element.id}
-                  type={element.type}
-                  value={formResult[element.text]}
-                  onChange={(event) => handleForm(event, element.text)}
-                />
-              )}
-            </div>
-          );
-        }
-      })}
-    </div>
+export default function FormBody(props) {
+  return props.formSection === 0 || props.formSection === 1 ? (
+    <SimpleForm {...props} />
+  ) : (
+    <AdvancedForm {...props} />
   );
 }
