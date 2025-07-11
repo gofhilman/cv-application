@@ -94,7 +94,7 @@ export default function AdvancedForm({
                         : formAddContent[element.text]
                     }
                     onChange={(event) => handleForm(event, element.text)}
-                    className={element.type === "checkbox" ? "mx-2 w-max" : ""}
+                    className={element.type === "checkbox" ? "mx-2 w-max align-middle" : ""}
                   />
                 )}
               </div>
