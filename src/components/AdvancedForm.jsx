@@ -6,6 +6,7 @@ export default function AdvancedForm({
   formSection,
   formResult,
   setFormResult,
+  className,
 }) {
   const [formAddContent, setFormAddContent] = useState({
     "Additional details": [],
@@ -45,7 +46,7 @@ export default function AdvancedForm({
   };
 
   return (
-    <div>
+    <div className={className}>
       <FormList
         formSection={formSection}
         formResult={formResult}
@@ -61,7 +62,7 @@ export default function AdvancedForm({
             );
           } else {
             return (
-              <div key={element.id}>
+              <div key={element.id} className="form-element">
                 <label htmlFor={element.id}>{element.text}</label>
                 {element.type === "textarea" ? (
                   <div>

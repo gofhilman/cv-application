@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @layer components {
   button.green {
     background-color: oklch(37.8% 0.077 168.94);

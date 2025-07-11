@@ -7,7 +7,7 @@ export default function FormContainer({ formResult, setFormResult }) {
   const [formSection, setFormSection] = useState(0);
 
   return (
-    <div className="w-full">
+    <div className="my-4 w-full">
       <FormHeader
         formDetails={formDetails}
         formSection={formSection}

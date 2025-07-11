@@ -1,3 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  label {
+    @apply mb-0.5 block text-[var(--theme-color)];
+  }
+  input,
+  textarea {
+    @apply w-9/10 rounded-lg border border-gray-300 px-2 py-1;
+  }
+  input[type="tel"] {
+    @apply w-4/10;
+  }
+  button {
+    @apply bg-[var(--theme-color)] text-white;
+  }
+}
+
 @layer components {
   .theme-color.green {
     --theme-color: oklch(37.8% 0.077 168.94);
@@ -9,3 +27,45 @@
     --theme-color: oklch(27.1% 0.105 12.094);
   }
 }
+
+/* Uncomment the following css normalize and reset stylesheet when writing vanilla css */
+
+/* normalize stylesheet */
+/* @import "../node_modules/modern-normalize/modern-normalize.css"; */
+
+/* reset stylesheet */
+/* :root {
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+figure,
+p,
+ol,
+ul {
+  margin: 0;
+}
+
+ol[role="list"],
+ul[role="list"] {
+  list-style: none;
+  padding-inline: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+} */
