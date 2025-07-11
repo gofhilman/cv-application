@@ -2,12 +2,12 @@
 
 @layer components {
   button.green {
-    background-color: oklch(37.8% 0.077 168.94);
+    background-color: #064e3b;
   }
   button.blue {
-    background-color: oklch(37.9% 0.146 265.522);
+    background-color: #1e3a8a;
   }
   button.red {
-    background-color: oklch(27.1% 0.105 12.094);
+    background-color: #4c0519;
   }
 }

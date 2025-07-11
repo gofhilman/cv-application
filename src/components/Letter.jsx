@@ -4,29 +4,34 @@ import location from "../assets/map-marker-outline.svg";
 import web from "../assets/web.svg";
 import "../styles/Letter.css";
 import { useRef } from "react";
-import html2pdf from "html2pdf.js";
-
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export default function Letter({ formResult }) {
   const contentRef = useRef(null);
 
   const downloadPDF = () => {
     const element = contentRef.current;
-    const options = {
-      margin: 10,
-      filename: "generated-cv.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-    };
+    if (!element) return;
 
-    html2pdf().set(options).from(element).save();
+    html2canvas(element, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("generated-cv.pdf");
+    });
   };
 
   return (
     <div>
       <button onClick={downloadPDF}>Download as PDF</button>
-      <article ref={contentRef} className="h-[424px] w-[300px] border border-gray-300 p-4">
+      <article
+        ref={contentRef}
+        className="h-[424px] w-[300px] border border-gray-300 p-4"
+      >
         <header className="grid grid-cols-[3fr_2fr] gap-x-4">
           <div>
             <h1 className="text-[15px]/5 font-bold text-[var(--theme-color)]">
@@ -35,7 +40,7 @@ export default function Letter({ formResult }) {
             <h2 className="text-[12px]/4 font-medium text-[var(--theme-color)]">
               {formResult["Professional title"]}
             </h2>
-            <p className="text-[6px] my-0.5">{formResult["Summary"]}</p>
+            <p className="my-0.5 text-[6px]">{formResult["Summary"]}</p>
           </div>
           <div className="contact self-center text-[6px]">
             <div>

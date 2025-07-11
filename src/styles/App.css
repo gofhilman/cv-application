@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-gray-300: #e5e7eb;
+}
+
 @layer base {
   label {
     @apply mb-0.5 block text-[var(--theme-color)];
@@ -15,13 +19,13 @@
 
 @layer components {
   .theme-color.green {
-    --theme-color: oklch(37.8% 0.077 168.94);
+    --theme-color: #064e3b;
   }
   .theme-color.blue {
-    --theme-color: oklch(37.9% 0.146 265.522);
+    --theme-color: #1e3a8a;
   }
   .theme-color.red {
-    --theme-color: oklch(27.1% 0.105 12.094);
+    --theme-color: #4c0519;
   }
 }
 
