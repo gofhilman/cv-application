@@ -63,7 +63,12 @@ export default function AdvancedForm({
           } else {
             return (
               <div key={element.id} className="form-element">
-                <label htmlFor={element.id}>{element.text}</label>
+                <label
+                  htmlFor={element.id}
+                  className={element.type === "checkbox" ? "inline" : ""}
+                >
+                  {element.text}
+                </label>
                 {element.type === "textarea" ? (
                   <div>
                     <textarea
@@ -89,6 +94,7 @@ export default function AdvancedForm({
                         : formAddContent[element.text]
                     }
                     onChange={(event) => handleForm(event, element.text)}
+                    className={element.type === "checkbox" ? "mx-2 w-max" : ""}
                   />
                 )}
               </div>
