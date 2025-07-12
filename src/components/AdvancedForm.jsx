@@ -67,7 +67,6 @@ export default function AdvancedForm({
         formSection={formSection}
         formResult={formResult}
         setFormResult={setFormResult}
-        formAddContent={formAddContent}
         setFormAddContent={setFormAddContent}
       />
       <div>
@@ -147,7 +146,6 @@ function FormList({
   formSection,
   formResult,
   setFormResult,
-  formAddContent,
   setFormAddContent,
 }) {
   const sectionList =
@@ -161,6 +159,13 @@ function FormList({
       [section]: formResult[section].filter((item) => item.id !== removedId),
     });
   };
+  const editList = (section, editedId) => {
+    setFormAddContent(formResult[section].find((item) => item.id === editedId));
+    setFormResult({
+      ...formResult,
+      [section]: formResult[section].filter((item) => item.id !== editedId),
+    });
+  };
 
   return (
     <div>
@@ -170,7 +175,12 @@ function FormList({
             {list[sectionList[1]]}
             {list[sectionList[2]] && " | " + list[sectionList[2]]}
           </p>
-          <img src={edit} alt="Edit button" className="w-8" />
+          <img
+            src={edit}
+            alt="Edit button"
+            onClick={() => editList(sectionList[0], list.id)}
+            className="w-8"
+          />
           <img
             src={remove}
             alt="Remove button"
