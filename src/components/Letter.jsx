@@ -27,7 +27,9 @@ export default function Letter({ formResult }) {
 
   return (
     <div>
-      <button onClick={downloadPDF}>Download as PDF</button>
+      <div className="flex justify-center">
+        <button onClick={downloadPDF} className="rounded-t-lg px-3 py-1 font-medium">Download as PDF</button>
+      </div>
       <article
         ref={contentRef}
         className="h-[424px] w-[300px] border border-gray-300 p-4"

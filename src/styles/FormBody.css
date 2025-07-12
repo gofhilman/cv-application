@@ -2,7 +2,7 @@
 
 @layer components {
   .form-body {
-    @apply rounded-b-lg border-x border-b border-gray-300 pl-3 pr-8 py-2;
+    @apply rounded-b-lg border-x border-b border-gray-300 pl-3 pr-8 py-2 h-[calc(100vh-150px)] overflow-y-auto;
   }
   .form-element {
     @apply py-1;

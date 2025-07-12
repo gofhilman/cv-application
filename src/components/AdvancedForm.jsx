@@ -73,21 +73,21 @@ export default function AdvancedForm({
         {section.body.map((element) => {
           if (element.type === "button") {
             return (
-              <button key={element.id} onClick={() => handleFormAdd(section)}>
+              <button
+                key={element.id}
+                onClick={() => handleFormAdd(section)}
+                className="mx-2 my-3 rounded-lg px-3 py-2 text-lg font-bold"
+              >
                 {element.text}
               </button>
             );
           } else {
             return (
               <div key={element.id} className="form-element">
-                <label
-                  htmlFor={element.id}
-                >
-                  {element.text}
-                </label>
+                <label htmlFor={element.id}>{element.text}</label>
                 {element.type === "textarea" ? (
                   <div>
-                    <div>
+                    <div className="relative">
                       <textarea
                         id={element.id}
                         value={descList}
@@ -97,19 +97,19 @@ export default function AdvancedForm({
                         src={plusCircle}
                         alt="Add button"
                         onClick={() => handleDescAdd(descList, element.text)}
-                        className="w-8"
+                        className="absolute right-0 bottom-1 w-8"
                       />
                     </div>
                     <div>
                       {descArray.map((desc) => (
-                        <div key={desc.id}>
-                          <p>{desc.description}</p>
+                        <div key={desc.id} className="py-1 flex gap-x-2 items-center">
                           <img
                             src={minusCircle}
                             alt="Remove button"
                             onClick={() => removeDesc(desc.id, element.text)}
                             className="w-5"
                           />
+                          <p className="leading-4">{desc.description}</p>
                         </div>
                       ))}
                     </div>
@@ -162,25 +162,36 @@ function FormList({
   };
 
   return (
-    <div>
+    <div className="my-2 flex flex-col gap-y-2.5">
       {formResult[sectionList[0]].map((list) => (
-        <div key={list.id}>
-          <p>
-            {list[sectionList[1]]}
+        <div
+          className="flex items-stretch divide-x-2 divide-white rounded-lg bg-[var(--theme-color)]"
+          key={list.id}
+        >
+          <p className="flex-1 px-3 py-2 text-white">
+            <span className="font-medium">{list[sectionList[1]]}</span>
             {list[sectionList[2]] && " | " + list[sectionList[2]]}
           </p>
-          <img
-            src={edit}
-            alt="Edit button"
+          <div
             onClick={() => editList(sectionList[0], list.id)}
-            className="w-8"
-          />
-          <img
-            src={remove}
-            alt="Remove button"
+            className="flex items-center bg-gray-400"
+          >
+            <img
+              src={edit}
+              alt="Edit icon"
+              className="h-[40px] px-3 py-2 brightness-0 invert"
+            />
+          </div>
+          <div
             onClick={() => removeList(sectionList[0], list.id)}
-            className="w-8"
-          />
+            className="flex items-center rounded-r-lg bg-red-900"
+          >
+            <img
+              src={remove}
+              alt="Remove icon"
+              className="h-[40px] px-3 py-2 brightness-0 invert"
+            />
+          </div>
         </div>
       ))}
     </div>

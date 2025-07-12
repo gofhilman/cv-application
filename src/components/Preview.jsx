@@ -20,7 +20,9 @@ export default function Preview(props) {
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">
           <div className="rounded-lg bg-white p-4">
             <Letter {...props} />
-            <button onClick={() => setDialogOpen(false)}>Close</button>
+            <div className="flex justify-end">
+              <button className="mt-2 rounded-lg px-3 py-1 font-medium" onClick={() => setDialogOpen(false)}>Close</button>
+            </div>
           </div>
         </div>
       )}
