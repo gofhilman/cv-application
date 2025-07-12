@@ -21,12 +21,17 @@ export default function Preview(props) {
           <div className="rounded-lg bg-white p-4">
             <Letter {...props} />
             <div className="flex justify-end">
-              <button className="mt-2 rounded-lg px-3 py-1 font-medium" onClick={() => setDialogOpen(false)}>Close</button>
+              <button
+                className="mt-2 rounded-lg px-3 py-1 font-medium"
+                onClick={() => setDialogOpen(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
       )}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block self-center">
         <Letter {...props} />
       </div>
     </>

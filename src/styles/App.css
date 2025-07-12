@@ -12,6 +12,9 @@
   textarea {
     @apply w-full rounded-lg border border-gray-300 px-2 py-1;
   }
+  textarea {
+    @apply resize-none;
+  }
   button {
     @apply bg-[var(--theme-color)] text-white;
   }

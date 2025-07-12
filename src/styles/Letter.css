@@ -5,30 +5,30 @@
     @apply mt-1;
   }
   .section h3 {
-    @apply border-b text-[10px] font-medium text-[var(--theme-color)];
+    @apply border-b text-[10px] lg:text-[15px] font-medium text-[var(--theme-color)];
   }
   .section h4 {
-    @apply text-[10px]/3 font-semibold;
+    @apply text-[10px]/3 lg:text-[15px]/5 font-semibold;
   }
   .section h5 {
-    @apply text-[8px]/2;
+    @apply text-[8px]/2 lg:text-[12px]/3;
   }
   .section > article > div {
     @apply my-0.5 grid grid-flow-col grid-rows-[auto_auto];
   }
   .section > article > div > p {
-    @apply row-span-full self-center justify-self-end text-[8px];
+    @apply row-span-full self-center justify-self-end text-[8px] lg:text-[12px];
   }
   .section > article > p {
-    @apply text-[8px];
+    @apply text-[8px] lg:text-[12px];
   }
   .section ul {
-    @apply list-inside list-disc text-[7px];
+    @apply list-inside list-disc text-[7px] lg:text-[11px];
   }
   .contact > div {
     @apply flex items-center gap-x-1;
   }
   .contact img {
-    @apply w-2.5;
+    @apply w-2.5 lg:w-4;
   }
 }

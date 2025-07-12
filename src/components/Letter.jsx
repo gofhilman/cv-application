@@ -26,25 +26,23 @@ export default function Letter({ formResult }) {
   };
 
   return (
-    <div>
-      <div className="flex justify-center">
-        <button onClick={downloadPDF} className="rounded-t-lg px-3 py-1 font-medium">Download as PDF</button>
-      </div>
+    <div className="flex flex-col items-center">
+      <button onClick={downloadPDF} className="rounded-t-lg px-3 py-1 font-medium">Download as PDF</button>
       <article
         ref={contentRef}
-        className="h-[424px] w-[300px] border border-gray-300 p-4"
+        className="h-[424px] w-[300px] border border-gray-300 p-4 lg:h-[636px] lg:w-[450px]"
       >
         <header className="grid grid-cols-[3fr_2fr] gap-x-4">
           <div>
-            <h1 className="text-[15px]/5 font-bold text-[var(--theme-color)]">
+            <h1 className="text-[15px]/5 lg:text-[23px]/6 font-bold text-[var(--theme-color)]">
               {formResult["First name"]} {formResult["Last name"]}
             </h1>
-            <h2 className="text-[12px]/4 font-medium text-[var(--theme-color)]">
+            <h2 className="text-[12px]/4 lg:text-[18px]/5 font-medium text-[var(--theme-color)]">
               {formResult["Professional title"]}
             </h2>
-            <p className="my-0.5 text-[6px]">{formResult["Summary"]}</p>
+            <p className="my-0.5 text-[6px] lg:text-[9px]">{formResult["Summary"]}</p>
           </div>
-          <div className="contact self-center text-[6px]">
+          <div className="contact self-center text-[6px] lg:text-[9px]">
             <div>
               {formResult["Email"] && <img src={email} alt="Icon" />}
               <p>{formResult["Email"]}</p>

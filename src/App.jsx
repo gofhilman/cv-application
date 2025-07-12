@@ -26,8 +26,10 @@ export default function App() {
         colorState={colorState}
         setColorState={setColorState}
       />
-      <FormContainer formResult={formResult} setFormResult={setFormResult} />
-      <Preview formResult={formResult} />
+      <div className="lg:grid lg:grid-cols-2 self-stretch gap-x-10">
+        <FormContainer formResult={formResult} setFormResult={setFormResult} />
+        <Preview formResult={formResult} />
+      </div>
     </div>
   );
 }
