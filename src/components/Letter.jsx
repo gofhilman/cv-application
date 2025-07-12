@@ -69,7 +69,8 @@ export default function Letter({ formResult }) {
                 <h4>{list["School"]}</h4>
                 <h5>{list["Course"]}</h5>
                 <p>
-                  {list["Starting year"]}-{list["Graduating year"]}
+                  {list["Starting year"]}
+                  {list["Graduating year"] && "-" + list["Graduating year"]}
                 </p>
               </div>
               {list["GPA"] && <p>GPA: {list["GPA"]}</p>}
@@ -89,7 +90,8 @@ export default function Letter({ formResult }) {
                 <h4>{list["Position"]}</h4>
                 <h5>{list["Workplace"]}</h5>
                 <p>
-                  {list["Starting year"]}-{list["End year"]}
+                  {list["Starting year"]}
+                  {list["End year"] && "-" + list["End year"]}
                 </p>
               </div>
               <ul>
