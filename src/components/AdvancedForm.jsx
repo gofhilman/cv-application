@@ -1,5 +1,8 @@
 import { useState } from "react";
 import plusCircle from "../assets/plus-circle.svg";
+import minusCircle from "../assets/minus-circle.svg";
+import edit from "../assets/pencil.svg";
+import remove from "../assets/trash-can.svg";
 
 export default function AdvancedForm({
   formDetails,
@@ -14,6 +17,10 @@ export default function AdvancedForm({
   });
   const [descList, setDescList] = useState("");
   const section = formDetails.find((detail) => detail.id === formSection);
+  const descArray =
+    formSection === 2
+      ? formAddContent["Additional details"]
+      : formAddContent["Job responsibilities"];
 
   const handleDescAdd = (description, elementText) => {
     setFormAddContent({
@@ -45,12 +52,23 @@ export default function AdvancedForm({
     });
   };
 
+  const removeDesc = (removedId, elementText) => {
+    setFormAddContent({
+      ...formAddContent,
+      [elementText]: formAddContent[elementText].filter(
+        (item) => item.id !== removedId,
+      ),
+    });
+  };
+
   return (
     <div className={className}>
       <FormList
         formSection={formSection}
         formResult={formResult}
         setFormResult={setFormResult}
+        formAddContent={formAddContent}
+        setFormAddContent={setFormAddContent}
       />
       <div>
         {section.body.map((element) => {
@@ -71,17 +89,32 @@ export default function AdvancedForm({
                 </label>
                 {element.type === "textarea" ? (
                   <div>
-                    <textarea
-                      id={element.id}
-                      value={descList}
-                      onChange={(event) => setDescList(event.target.value)}
-                    />
-                    <img
-                      src={plusCircle}
-                      alt="Add button"
-                      onClick={() => handleDescAdd(descList, element.text)}
-                      className="w-8"
-                    />
+                    <div>
+                      <textarea
+                        id={element.id}
+                        value={descList}
+                        onChange={(event) => setDescList(event.target.value)}
+                      />
+                      <img
+                        src={plusCircle}
+                        alt="Add button"
+                        onClick={() => handleDescAdd(descList, element.text)}
+                        className="w-8"
+                      />
+                    </div>
+                    <div>
+                      {descArray.map((desc) => (
+                        <div key={desc.id}>
+                          <p>{desc.description}</p>
+                          <img
+                            src={minusCircle}
+                            alt="Remove button"
+                            onClick={() => removeDesc(desc.id, element.text)}
+                            className="w-5"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <input
@@ -94,7 +127,11 @@ export default function AdvancedForm({
                         : formAddContent[element.text]
                     }
                     onChange={(event) => handleForm(event, element.text)}
-                    className={element.type === "checkbox" ? "mx-2 w-max align-middle" : ""}
+                    className={
+                      element.type === "checkbox"
+                        ? "mx-2 w-max align-middle"
+                        : ""
+                    }
                   />
                 )}
               </div>
@@ -106,45 +143,42 @@ export default function AdvancedForm({
   );
 }
 
-function FormList({ formSection, formResult, setFormResult }) {
-  if (formSection === 2) {
-    return (
-      <ul>
-        {formResult.Education.map((list) => (
-          <List
-            formSection={formSection}
-            formResult={formResult}
-            setFormResult={setFormResult}
-            key={list.id}
-            first={list["School"]}
-            second={list["Course"]}
-          />
-        ))}
-      </ul>
-    );
-  } else {
-    return (
-      <ul>
-        {formResult.Experience.map((list) => (
-          <List
-            formSection={formSection}
-            formResult={formResult}
-            setFormResult={setFormResult}
-            key={list.id}
-            first={list["Position"]}
-            second={list["Workplace"]}
-          />
-        ))}
-      </ul>
-    );
-  }
-}
+function FormList({
+  formSection,
+  formResult,
+  setFormResult,
+  formAddContent,
+  setFormAddContent,
+}) {
+  const sectionList =
+    formSection === 2
+      ? ["Education", "School", "Course"]
+      : ["Experience", "Position", "Workplace"];
 
-function List({ formSection, formResult, setFormResult, first, second }) {
+  const removeList = (section, removedId) => {
+    setFormResult({
+      ...formResult,
+      [section]: formResult[section].filter((item) => item.id !== removedId),
+    });
+  };
+
   return (
-    <li>
-      {first}
-      {second && " | " + second}
-    </li>
+    <div>
+      {formResult[sectionList[0]].map((list) => (
+        <div key={list.id}>
+          <p>
+            {list[sectionList[1]]}
+            {list[sectionList[2]] && " | " + list[sectionList[2]]}
+          </p>
+          <img src={edit} alt="Edit button" className="w-8" />
+          <img
+            src={remove}
+            alt="Remove button"
+            onClick={() => removeList(sectionList[0], list.id)}
+            className="w-8"
+          />
+        </div>
+      ))}
+    </div>
   );
 }
